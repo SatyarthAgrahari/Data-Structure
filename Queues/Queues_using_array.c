@@ -7,12 +7,12 @@ struct Queue{
      int rear;
      int *Q;
 };
-void create(struct Queue *q)
+void create(struct Queue *q,int size)
 {
-    printf("Entert size\n");
+   // printf("Entert size\n");
    // scanf("%d ",q->size);
-    q->size=5;
-    q->Q=(int *)malloc(q->size*sizeof(int));
+    q->size=size;
+    q->Q=(int *)malloc(size*sizeof(int));
     q->front=q->rear=-1;
 }
 void enqueue(struct Queue *q,int x)
@@ -52,7 +52,7 @@ void display(struct Queue q)
 int main()
 {
     struct Queue q;
-    create(&q);
+    create(&q,5);
     enqueue(&q,10);
     enqueue(&q,20);
     enqueue(&q,30);
