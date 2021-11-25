@@ -1,46 +1,54 @@
 #include<stdio.h>
 #include<conio.h>
 #include<stdlib.h>
-int maximum(int B[],int t)
+int findMax(int A[],int n)
 {
-	int i;
-	int x = B[0];
-	for (i = 0; i < t; i++)
-	{
-		if (B[i] > x)
-			x = B[i];
-	}
-	return x;
+ int max=A[0];
+ int i;
+ for(i=0;i<n;i++)
+ {
+ if(A[i]>max)
+ max=A[i];
+ }
+ return max;
 }
-void countSort(int A[], int n)
+void CountSort(int A[],int n)
 {
-	int* c;
-	int m= maximum(A, n);
-	c = (int*)malloc(m+1 * sizeof(int));
-	for (int i = 0; i < m + 1; i++)
-	{
-		c[i] = 0;
-	}
-	for (int i = 0; i < m + 1; i++)
-		c[A[i]]++;
-	int i = 0, j = 0;
-	while (i <= m + 1)
-	{
-		if (c[i] > 0)
-		{
-			A[j++] = i;
-			c[i]--;
-		}
-		else i++;
-	}
-	free(c);
+ int i,j,max,*C;
+
+ max=findMax(A,n);
+ C=(int *)malloc(sizeof(int)*(max+1));
+
+ for(i=0;i<max+1;i++)
+ {
+ C[i]=0;
+ }
+ for(i=0;i<n;i++)
+ {
+ C[A[i]]++;
+ }
+
+ i=0;j=0;
+ while(j<max+1)
+ {
+ if(C[j]>0)
+ {
+ A[i++]=j;
+ C[j]--;
+ }
+ else
+ j++;
+ }
 }
 int main()
 {
-	int A[] = { 15,10,5,6,3,2,9,5}, n = 8;
-	countSort(A, n);
-	for (int i = 0; i < n; i++)
-		printf("%d ", A[i]);
-	return 0;
+ int A[]={11,13,7,12,16,9,24,5,10,3},n=10,i;
 
+ CountSort(A,n);
+
+ for(i=0;i<10;i++)
+ printf("%d ",A[i]);
+ printf("\n");
+
+ return 0;
 }
